@@ -1,18 +1,18 @@
-resource "google_service_account" "nodeapp_appengine_service_account" {
-  account_id   = "nodeapp_appengine_service_account"
+resource "google_service_account" "nodeappappengineserviceaccount" {
+  account_id   = "nodeappappengineserviceaccount"
   display_name = "Custom App Engine Service Account for NodeApp !"
 }
 
 resource "google_project_iam_member" "nodeapp_gae_api" {
-  project = google_service_account.nodeapp_appengine_service_account.project
+  project = google_service_account.nodeappappengineserviceaccount.project
   role    = "roles/compute.networkUser"
-  member  = "serviceAccount:${google_service_account.nodeapp_appengine_service_account.email}"
+  member  = "serviceAccount:${google_service_account.nodeappappengineserviceaccount.email}"
 }
 
 resource "google_project_iam_member" "nodeapp_storage_viewer" {
-  project = google_service_account.nodeapp_appengine_service_account.project
+  project = google_service_account.nodeappappengineserviceaccount.project
   role    = "roles/storage.objectViewer"
-  member  = "serviceAccount:${google_service_account.nodeapp_appengine_service_account.email}"
+  member  = "serviceAccount:${google_service_account.nodeappappengineserviceaccount.email}"
 }
 
 resource "google_storage_bucket" "nodeapp_bucket" {
@@ -67,6 +67,6 @@ resource "google_app_engine_standard_app_version" "nodeapp_appengine_version" {
   }
 
   noop_on_destroy = false
-  service_account = google_service_account.nodeapp_appengine_service_account.email
+  service_account = google_service_account.nodeappappengineserviceaccount.email
 }
 
