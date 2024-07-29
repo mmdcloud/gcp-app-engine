@@ -29,7 +29,7 @@ resource "google_storage_bucket_object" "nodeapp_object" {
 
 resource "google_app_engine_standard_app_version" "nodeapp_appengine_version" {
   version_id                = "v2"
-  service                   = "nodeapp"
+  service                   = "default"
   runtime                   = "nodejs20"
   app_engine_apis           = true
   delete_service_on_destroy = true
